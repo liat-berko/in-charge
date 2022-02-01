@@ -1,0 +1,37 @@
+<div class="sidenav_container"  [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <mat-nav-list>
+  <button mat-icon-button (click)="onSinenavToggle()">
+    <mat-icon>menu2</mat-icon>
+  </button>
+  <ng-container *ngFor="let menu of menuList$ | async; index as i;">
+      <ng-container [ngTemplateOutlet]="menu.children ?  childMenu : parentMenu"
+          [ngTemplateOutletContext]="{menu:menu}">
+      </ng-container>
+  </ng-container>
+</mat-nav-list>
+</div>
+
+
+<ng-template #parentMenu let-menu="menu">
+  <mat-list-item [routerLink]="menu.link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
+      true}">
+      <mat-icon>{{menu.icon}}</mat-icon> 
+      <span [@animateText]="linkText ? 'show' : 'hide'">{{menu.name}}</span>
+  </mat-list-item>
+</ng-template> 
+
+<ng-template #childMenu let-menu="menu">
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+      <mat-expansion-panel-header>
+          <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'">{{menu.name}}</span>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+          <mat-list-item [routerLink]="submenu.link" *ngFor="let submenu of menu.children" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
+              true}">
+              <mat-icon>{{submenu.icon}}</mat-icon> 
+              <span [@animateText]="linkText ? 'show' : 'hide'">{{submenu.name}}</span>
+          </mat-list-item>
+      </mat-nav-list>
+  </mat-expansion-panel>
+</ng-template>

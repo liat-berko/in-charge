@@ -1,0 +1,8 @@
+<view-header-base [viewsContainer]="viewsContainer"
+[navigationView]="navigationView"
+    (navigationChangeEmitter)="navigationChangeEmitter($event)"></view-header-base>
+<app-view-container-base 
+    [viewsContainer]="viewsContainer" 
+    [navigationView]="navigationView"
+    (tabSelectedChangeEmitter)="tabSelectedChangeEmitter($event)">  
+</app-view-container-base>

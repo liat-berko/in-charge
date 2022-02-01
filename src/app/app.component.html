@@ -1,0 +1,37 @@
+<!-- <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #leftSidenav mode="side" opened>
+    <app-menu></app-menu>
+    
+  </mat-sidenav>
+  <mat-sidenav-content  mode="over" [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+    <div class="main_content">
+      <app-header [sidenav]="leftSidenav"></app-header>
+
+      <div style="padding: 20px">
+        
+        <router-outlet></router-outlet>
+        Your content xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<div class="sidebar-container">
+  
+
+  <mat-sidenav-container class="sidebar-sidenav-container">
+    <mat-sidenav #snav mode="side" fixedTopGap="56" opened="true">
+      
+      <app-side-menu [sidenav]="snav" style="width: 200px;" ></app-side-menu>
+    </mat-sidenav>
+    <mat-sidenav-content  mode="over" class="router-container" [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+      <!--  -->
+      <mat-toolbar color="primary" class="sidebar-toolbar">    
+        <h1 class="sidebar-app-name">Sidenav App</h1>
+        <app-header></app-header>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div> 
+

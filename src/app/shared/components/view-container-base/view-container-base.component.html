@@ -1,0 +1,18 @@
+<ng-container [ngTemplateOutlet]="isSimple ?  simpleView : tabsView">
+</ng-container>
+
+<ng-template #simpleView>
+    base-s
+        <ng-container  *ngComponentOutlet="currentView"></ng-container>
+
+</ng-template> 
+
+<ng-template #tabsView>
+    base-h
+    <mat-tab-group animationDuration="0ms" (selectedTabChange)="onTabSelectedTabChange($event)">
+        <mat-tab  *ngFor="let view of propsToArray(currentViews!)" label="{{view.title}}">
+            Content 
+            <ng-container *ngComponentOutlet="view.componentType"></ng-container>
+        </mat-tab>
+      </mat-tab-group>
+</ng-template>
